@@ -1,0 +1,1245 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EXAMORA — The Next Generation Online Examination & Assessment Platform</title>
+  <meta name="description" content="EXAMORA is an ultra-premium, futuristic online examination platform designed for modern learning, real-time proctoring, and instant performance intelligence.">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%236366F1'><path d='M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5'/></svg>">
+</head>
+<body>
+
+  <!-- ==========================================================================
+       TOP GLASS NAVBAR
+       ========================================================================== -->
+  <nav class="navbar" id="main-navbar">
+    <div class="container navbar-inner">
+      <!-- Brand Logo -->
+      <div class="brand" onclick="navigateTo('landing')">
+        <div class="brand-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+            <path d="M2 17l10 5 10-5"/>
+            <path d="M2 12l10 5 10-5"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <span class="brand-name">EXAMORA</span>
+          <span class="brand-tagline">Test Your Knowledge. Unlock Potential.</span>
+        </div>
+      </div>
+
+      <!-- Navigation Links -->
+      <ul class="nav-links">
+        <li><a class="nav-link active" data-nav="landing" onclick="navigateTo('landing')">Home</a></li>
+        <li><a class="nav-link" data-nav="discovery" onclick="navigateTo('discovery')">Exams</a></li>
+        <li><a class="nav-link" data-nav="features" onclick="scrollToSection('features')">Features</a></li>
+        <li><a class="nav-link" data-nav="student" onclick="navigateTo('student')">Dashboard</a></li>
+        <li><a class="nav-link" data-nav="analytics" onclick="navigateTo('analytics')">Analytics</a></li>
+        <li><a class="nav-link" data-nav="leaderboard" onclick="navigateTo('leaderboard')">Leaderboard</a></li>
+      </ul>
+
+      <!-- Right Nav Actions -->
+      <div class="nav-actions">
+        <!-- Quick Role Switcher Pill -->
+        <div class="role-switcher" title="Switch between Student and Admin perspective">
+          <button class="role-pill-btn active" id="pill-student" onclick="switchRole('student')">Student</button>
+          <button class="role-pill-btn" id="pill-admin" onclick="switchRole('admin')">Admin</button>
+        </div>
+
+        <!-- Dark / Light Theme Toggle -->
+        <button class="theme-toggle-btn" id="theme-toggle" onclick="toggleTheme()" title="Toggle Dark/Light Mode" aria-label="Toggle Theme">
+          <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+          <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
+
+        <!-- CTA Start / User Avatar -->
+        <button class="btn btn-primary btn-sm" id="nav-cta-btn" onclick="navigateTo('discovery')">
+          <span>Start Exam</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </button>
+
+        <!-- Mobile Menu Toggle -->
+        <button class="mobile-toggle" onclick="toggleMobileDrawer()" aria-label="Open Mobile Menu">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Drawer Menu -->
+  <div class="drawer-overlay" id="drawer-overlay" onclick="toggleMobileDrawer()"></div>
+  <div class="mobile-drawer" id="mobile-drawer">
+    <div style="display:flex; justify-content:space-between; align-items:center;">
+      <span style="font-weight:800; font-size:1.2rem;" class="text-gradient">EXAMORA</span>
+      <button class="btn-icon" onclick="toggleMobileDrawer()">✕</button>
+    </div>
+    <div class="drawer-links">
+      <a class="drawer-link" onclick="navigateTo('landing'); toggleMobileDrawer();">Home</a>
+      <a class="drawer-link" onclick="navigateTo('discovery'); toggleMobileDrawer();">Explore Exams</a>
+      <a class="drawer-link" onclick="navigateTo('student'); toggleMobileDrawer();">Student Dashboard</a>
+      <a class="drawer-link" onclick="navigateTo('analytics'); toggleMobileDrawer();">Analytics</a>
+      <a class="drawer-link" onclick="navigateTo('leaderboard'); toggleMobileDrawer();">Elite Leaderboard</a>
+      <a class="drawer-link" onclick="navigateTo('admin'); toggleMobileDrawer();">Admin Center</a>
+    </div>
+    <div style="margin-top:auto; display:flex; flex-direction:column; gap:0.8rem;">
+      <button class="btn btn-primary" onclick="navigateTo('discovery'); toggleMobileDrawer();">Start Live Exam</button>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- ==========================================================================
+       VIEW 1: LANDING & HERO EXPERIENCE
+       ========================================================================== -->
+  <main id="view-landing" class="app-view">
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="container hero-grid">
+        <!-- Left Content -->
+        <div class="hero-content">
+          <div class="hero-badge">
+            <span class="hero-badge-dot"></span>
+            <span>THE NEXT GENERATION OF ONLINE ASSESSMENT</span>
+          </div>
+
+          <h1 class="hero-title">
+            Exams Made Smarter.<br>
+            <span>Results Made Faster.</span>
+          </h1>
+
+          <p class="hero-subtitle">
+            Experience a faster, smarter and more engaging way to evaluate knowledge, track performance, and achieve world-class certification outcomes.
+          </p>
+
+          <div class="hero-actions">
+            <button class="btn btn-primary btn-lg" onclick="startFlagshipExam()">
+              <span>Start Exam</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </button>
+            <button class="btn btn-secondary btn-lg" onclick="navigateTo('discovery')">
+              <span>Explore Platform</span>
+            </button>
+          </div>
+
+          <div class="hero-trust-row">
+            <div class="hero-trust-item">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              <span>Secure & Anti-Cheat</span>
+            </div>
+            <div class="hero-trust-item">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              <span>Sub-second Latency</span>
+            </div>
+            <div class="hero-trust-item">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              <span>Intelligent Analytics</span>
+            </div>
+            <div class="hero-trust-item">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              <span>Modern Learning</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Visual: Futuristic Floating Exam Dashboard -->
+        <div class="hero-visual">
+          <div class="hero-dashboard-mockup">
+            <div class="mockup-header">
+              <span class="mockup-title">Advanced Computer Science</span>
+              <span class="mockup-timer">42:18</span>
+            </div>
+
+            <!-- Score / Performance Banner -->
+            <div class="mockup-score-card">
+              <div class="mockup-score-left">
+                <span class="mockup-score-label">Assessment Score</span>
+                <span class="mockup-score-val">94%</span>
+                <span class="mockup-score-perf">✓ Excellent Performance</span>
+              </div>
+              <div class="mockup-progress-ring">
+                <svg width="68" height="68" viewBox="0 0 68 68">
+                  <circle cx="34" cy="34" r="28" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="6"/>
+                  <circle cx="34" cy="34" r="28" fill="none" stroke="#6366F1" stroke-width="6" stroke-dasharray="176" stroke-dashoffset="10"/>
+                </svg>
+              </div>
+            </div>
+
+            <!-- Mockup Quick Stats -->
+            <div class="mockup-stats-grid">
+              <div class="mockup-stat-box">
+                <div class="lbl">Completed Questions</div>
+                <div class="val">28 / 30</div>
+              </div>
+              <div class="mockup-stat-box">
+                <div class="lbl">Class Percentile</div>
+                <div class="val" style="color:#06B6D4;">Top 2%</div>
+              </div>
+            </div>
+
+            <!-- Floating Mini Badges -->
+            <div class="floating-pill floating-pill-1">
+              <span>Exam Completed ✓</span>
+            </div>
+            <div class="floating-pill floating-pill-2">
+              <span>+18% Performance</span>
+            </div>
+            <div class="floating-pill floating-pill-3">
+              <span>New Assessment Available</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Statistics Strip -->
+    <section class="stats-strip">
+      <div class="container stats-strip-grid">
+        <div class="stat-item">
+          <div class="stat-number">10K+</div>
+          <div class="stat-label">Active Students</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">500+</div>
+          <div class="stat-label">Examinations Hosted</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">50K+</div>
+          <div class="stat-label">Questions Evaluated</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">98%</div>
+          <div class="stat-label">Success Satisfaction</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bento Feature Showcase -->
+    <section class="features-section" id="features">
+      <div class="container">
+        <div class="section-header">
+          <div class="badge badge-primary section-badge">Architecture & Innovation</div>
+          <h2 class="section-title">Everything You Need to Perform Better</h2>
+          <p class="section-subtitle">A high-performance assessment ecosystem engineered for uncompromising accuracy, security, and pedagogical depth.</p>
+        </div>
+
+        <div class="bento-grid">
+          <!-- Card 1 (Large) -->
+          <div class="bento-card bento-card-large">
+            <div class="bento-icon">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+              </svg>
+            </div>
+            <h3 class="bento-title">Smart Distraction-Free Examinations</h3>
+            <p class="bento-desc">Zero clutter, instant keyboard navigation, automatic state caching, and responsive countdown timers tuned for deep cognitive focus.</p>
+            <div class="bento-preview">
+              <div style="display:flex; justify-content:space-between; align-items:center; font-size:0.85rem;">
+                <span style="color:#818CF8; font-weight:600;">Question 18 of 30</span>
+                <span style="color:#10B981; font-weight:700;">● Saved Automatically</span>
+              </div>
+              <div style="height:6px; background:rgba(255,255,255,0.1); border-radius:4px; margin-top:8px; overflow:hidden;">
+                <div style="width:60%; height:100%; background:linear-gradient(90deg,#6366F1,#06B6D4); border-radius:4px;"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="bento-card">
+            <div class="bento-icon">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 14 14"></polyline>
+              </svg>
+            </div>
+            <h3 class="bento-title">Instant Results Engine</h3>
+            <p class="bento-desc">Millisecond scoring pipeline with automatic grading and comprehensive question-by-question explanations.</p>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="bento-card">
+            <div class="bento-icon">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="18" y1="20" x2="18" y2="10"></line>
+                <line x1="12" y1="20" x2="12" y2="4"></line>
+                <line x1="6" y1="20" x2="6" y2="14"></line>
+              </svg>
+            </div>
+            <h3 class="bento-title">Real-Time Progress</h3>
+            <p class="bento-desc">Visual question matrix with status color coding (Answered, Marked for Review, and Skipped).</p>
+          </div>
+
+          <!-- Card 4 (Large) -->
+          <div class="bento-card bento-card-large">
+            <div class="bento-icon">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21.21 15.89A10 10 0 1 1 8 2.83"></path>
+                <path d="M22 12A10 10 0 0 0 12 2v10z"></path>
+              </svg>
+            </div>
+            <h3 class="bento-title">Deep Performance Analytics</h3>
+            <p class="bento-desc">Comprehensive insights into subject mastery, time distribution, accuracy curves, and actionable AI-driven study recommendations.</p>
+            <div class="bento-preview" style="display:flex; justify-content:space-around; text-align:center;">
+              <div><div style="font-size:1.3rem; font-weight:800; color:#10B981;">96%</div><div style="font-size:0.75rem; color:#94A3B8;">Pass Rate</div></div>
+              <div><div style="font-size:1.3rem; font-weight:800; color:#6366F1;">94%</div><div style="font-size:0.75rem; color:#94A3B8;">Avg Score</div></div>
+              <div><div style="font-size:1.3rem; font-weight:800; color:#06B6D4;">+18%</div><div style="font-size:0.75rem; color:#94A3B8;">Knowledge Lift</div></div>
+            </div>
+          </div>
+
+          <!-- Card 5 -->
+          <div class="bento-card">
+            <div class="bento-icon">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+              </svg>
+            </div>
+            <h3 class="bento-title">Secure Testing Protocols</h3>
+            <p class="bento-desc">Tamper-proof client state with tab-focus monitoring and automatic backup resilience.</p>
+          </div>
+
+          <!-- Card 6 -->
+          <div class="bento-card">
+            <div class="bento-icon">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="16" y1="13" x2="8" y2="13"></line>
+                <line x1="16" y1="17" x2="8" y2="17"></line>
+              </svg>
+            </div>
+            <h3 class="bento-title">Question Explanations</h3>
+            <p class="bento-desc">Review full rationales and academic citations behind every multiple-choice item after exam conclusion.</p>
+          </div>
+
+          <!-- Card 7 -->
+          <div class="bento-card">
+            <div class="bento-icon">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="8" r="7"></circle>
+                <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline>
+              </svg>
+            </div>
+            <h3 class="bento-title">Global Leaderboard</h3>
+            <p class="bento-desc">Compete with top fellows worldwide, build daily examination streaks, and climb the podium.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer style="border-top:1px solid var(--border-subtle); padding:4rem 0 2.5rem; background:rgba(7,9,19,0.9);">
+      <div class="container" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1.5rem;">
+        <div class="brand">
+          <div class="brand-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+              <path d="M2 17l10 5 10-5"/>
+              <path d="M2 12l10 5 10-5"/>
+            </svg>
+          </div>
+          <span class="brand-name">EXAMORA</span>
+        </div>
+        <p style="font-size:0.85rem; color:var(--text-muted);">© 2026 EXAMORA Inc. Commercial Assessment Technologies. All rights reserved.</p>
+        <div style="display:flex; gap:1.5rem; font-size:0.85rem; color:var(--text-secondary);">
+          <a href="#" onclick="navigateTo('discovery')">Exams</a>
+          <a href="#" onclick="navigateTo('student')">Dashboard</a>
+          <a href="#" onclick="navigateTo('leaderboard')">Leaderboard</a>
+          <a href="#" onclick="navigateTo('admin')">Admin</a>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <!-- ==========================================================================
+       VIEW 2: EXAM DISCOVERY MARKETPLACE
+       ========================================================================== -->
+  <main id="view-discovery" class="app-view" style="display:none;">
+    <section class="discovery-section">
+      <div class="container">
+        <!-- Header -->
+        <div style="margin-bottom:2.5rem;">
+          <div class="badge badge-primary" style="margin-bottom:0.6rem;">Assessment Marketplace</div>
+          <h1 style="font-size:2.5rem; margin-bottom:0.5rem;">Explore Examinations & Certifications</h1>
+          <p style="color:var(--text-secondary);">Filter by domain, verify syllabus requirements, and begin rigorous proctored evaluations.</p>
+        </div>
+
+        <!-- Search & Filter Toolbar -->
+        <div class="discovery-toolbar">
+          <div class="search-box">
+            <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input type="text" id="exam-search-input" placeholder="Search examinations by title or keyword..." oninput="filterExams()">
+          </div>
+
+          <div class="filter-pills" id="category-pills">
+            <button class="filter-pill active" onclick="setCategoryFilter('all')">All Domains</button>
+            <button class="filter-pill" onclick="setCategoryFilter('Computer Science')">Computer Science</button>
+            <button class="filter-pill" onclick="setCategoryFilter('Cloud Architecture')">Cloud</button>
+            <button class="filter-pill" onclick="setCategoryFilter('AI & ML')">AI & Machine Learning</button>
+            <button class="filter-pill" onclick="setCategoryFilter('Cyber Security')">Cyber Security</button>
+            <button class="filter-pill" onclick="setCategoryFilter('Data Structures')">Algorithms</button>
+            <button class="filter-pill" onclick="setCategoryFilter('DevOps')">DevOps</button>
+          </div>
+        </div>
+
+        <!-- Exams Grid -->
+        <div class="exams-grid" id="exams-container">
+          <!-- Dynamically populated from data.js -->
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==========================================================================
+       VIEW 3: DISTRACTION-FREE EXAMINATION ARENA
+       ========================================================================== -->
+  <main id="view-exam" class="app-view" style="display:none;">
+    <section class="exam-arena">
+      <div class="container">
+        <!-- Arena Top Bar -->
+        <div class="arena-topbar">
+          <div class="arena-exam-info">
+            <div class="brand-icon" style="width:34px; height:34px;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                <path d="M2 17l10 5 10-5"/>
+              </svg>
+            </div>
+            <div>
+              <div class="arena-exam-name" id="arena-exam-title">Advanced Computer Science & System Design</div>
+              <div style="font-size:0.75rem; color:var(--text-muted);">Proctored Examination Mode • Anti-Cheat Active</div>
+            </div>
+          </div>
+
+          <div class="arena-controls">
+            <!-- Auto-save Status -->
+            <div class="autosave-indicator" id="autosave-indicator">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              <span id="autosave-text">Saved ✓</span>
+            </div>
+
+            <!-- Question Progress Pill -->
+            <div class="arena-counter-badge" id="arena-progress-badge">
+              Question 1 / 30
+            </div>
+
+            <!-- Dynamic Countdown Timer -->
+            <div class="arena-timer-box" id="arena-timer-box">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+              </svg>
+              <span id="arena-timer-display">45:00</span>
+            </div>
+
+            <!-- Submit Exam Button -->
+            <button class="btn btn-primary btn-sm" onclick="openSubmitModal()">
+              Submit Exam
+            </button>
+          </div>
+        </div>
+
+        <!-- Arena Grid: Left Question, Right Navigator -->
+        <div class="arena-grid">
+          <!-- Main Question Card -->
+          <div class="question-card">
+            <div class="question-meta-row">
+              <div class="question-number-pill" id="question-header-pill">QUESTION 01 OF 30</div>
+              <div style="display:flex; gap:0.5rem;">
+                <span class="badge badge-primary" id="question-category-badge">Computer Science</span>
+                <span class="badge badge-cyan" id="question-marks-badge">+1 Mark</span>
+              </div>
+            </div>
+
+            <!-- Question Text -->
+            <h2 class="question-text" id="question-text">Loading question content...</h2>
+
+            <!-- Optional Code Block -->
+            <div class="question-code-block" id="question-code-snippet" style="display:none;"></div>
+
+            <!-- 4 Options List -->
+            <div class="options-list" id="options-container">
+              <!-- Rendered dynamically -->
+            </div>
+
+            <!-- Action Bar -->
+            <div class="question-action-bar">
+              <div class="action-bar-left">
+                <button class="btn btn-secondary btn-sm" id="btn-prev-q" onclick="navigateQuestion(-1)">
+                  ← Previous
+                </button>
+                <button class="btn btn-flag btn-sm" id="btn-mark-review" onclick="toggleMarkForReview()">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"></path>
+                    <line x1="4" y1="22" x2="4" y2="15"></line>
+                  </svg>
+                  <span id="mark-btn-label">Mark for Review</span>
+                </button>
+                <button class="btn btn-secondary btn-sm" onclick="clearCurrentChoice()" title="Clear answer">
+                  Clear Choice
+                </button>
+              </div>
+
+              <div class="action-bar-right">
+                <button class="btn btn-primary btn-sm" id="btn-next-q" onclick="navigateQuestion(1)">
+                  Next Question →
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Question Palette Sidebar -->
+          <div class="arena-sidebar">
+            <div class="palette-card">
+              <div class="palette-header">
+                <span class="palette-title">Question Palette</span>
+                <span class="badge badge-primary" id="palette-summary-badge">30 Total</span>
+              </div>
+
+              <!-- Matrix of 30 questions -->
+              <div class="palette-matrix" id="palette-matrix">
+                <!-- Dynamically generated buttons 01 to 30 -->
+              </div>
+
+              <!-- Palette Legend -->
+              <div class="palette-legend">
+                <div class="legend-item">
+                  <div class="legend-dot legend-completed"></div>
+                  <span>Answered (<span id="tally-answered-count">0</span>)</span>
+                </div>
+                <div class="legend-item">
+                  <div class="legend-dot legend-marked"></div>
+                  <span>Marked (<span id="tally-marked-count">0</span>)</span>
+                </div>
+                <div class="legend-item">
+                  <div class="legend-dot legend-current"></div>
+                  <span>Current</span>
+                </div>
+                <div class="legend-item">
+                  <div class="legend-dot legend-unanswered"></div>
+                  <span>Unanswered (<span id="tally-unanswered-count">30</span>)</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Quick Live Tally Box -->
+            <div class="arena-tally-box">
+              <div class="tally-col">
+                <div class="val" id="quick-answered" style="color:var(--success);">0</div>
+                <div class="lbl">Answered</div>
+              </div>
+              <div class="tally-col">
+                <div class="val" id="quick-marked" style="color:var(--warning);">0</div>
+                <div class="lbl">Marked</div>
+              </div>
+              <div class="tally-col">
+                <div class="val" id="quick-remaining" style="color:var(--text-muted);">30</div>
+                <div class="lbl">Unanswered</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==========================================================================
+       VIEW 4: SUBMISSION CONFIRMATION MODAL
+       ========================================================================== -->
+  <div class="modal-overlay" id="submit-confirm-modal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div class="modal-icon-badge">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <circle cx="12" cy="12" r="10"></circle>
+            <polyline points="12 6 12 12 14 14"></polyline>
+          </svg>
+        </div>
+        <h3 class="modal-title">Ready to Submit Your Examination?</h3>
+        <p class="modal-subtitle">You're almost done. Review your answers before committing final submission.</p>
+      </div>
+
+      <div class="submit-summary-grid">
+        <div class="submit-summary-box answered">
+          <div class="val" id="modal-answered-val">24</div>
+          <div class="lbl">Answered</div>
+        </div>
+        <div class="submit-summary-box unanswered">
+          <div class="val" id="modal-unanswered-val">4</div>
+          <div class="lbl">Unanswered</div>
+        </div>
+        <div class="submit-summary-box marked">
+          <div class="val" id="modal-marked-val">2</div>
+          <div class="lbl">Marked</div>
+        </div>
+      </div>
+
+      <div class="modal-actions">
+        <button class="btn btn-secondary" onclick="closeSubmitModal()">
+          Review Exam
+        </button>
+        <button class="btn btn-primary" onclick="confirmSubmitExam()">
+          Submit Exam
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       VIEW 5: PREMIUM RESULT & SCORE BREAKDOWN
+       ========================================================================== -->
+  <main id="view-result" class="app-view" style="display:none;">
+    <section class="result-section">
+      <div class="container">
+        <!-- Hero Score Card -->
+        <div class="result-hero-card">
+          <!-- Animated Circular Score Gauge -->
+          <div class="score-gauge-wrap">
+            <svg class="score-gauge-svg" viewBox="0 0 160 160">
+              <defs>
+                <linearGradient id="scoreGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#6366F1" />
+                  <stop offset="100%" stop-color="#06B6D4" />
+                </linearGradient>
+              </defs>
+              <circle class="gauge-bg" cx="80" cy="80" r="70" />
+              <circle class="gauge-fill" id="result-gauge-circle" cx="80" cy="80" r="70" />
+            </svg>
+            <div class="score-gauge-text">
+              <span class="gauge-score-number" id="result-score-percent">94%</span>
+              <span class="gauge-score-pct">FINAL SCORE</span>
+            </div>
+          </div>
+
+          <div class="result-status-badge" id="result-status-badge">
+            EXCELLENT PERFORMANCE
+          </div>
+
+          <h2 style="font-size:2rem; margin-bottom:0.5rem;" id="result-exam-title">
+            Advanced Computer Science & System Design
+          </h2>
+          <p style="color:var(--text-secondary); max-width:550px; margin:0 auto 2rem;">
+            Your submission has been evaluated against academic benchmark metrics. You qualify for high-distinction honors.
+          </p>
+
+          <!-- 5 Metric Cards -->
+          <div class="result-stats-grid">
+            <div class="result-stat-card">
+              <div class="val" id="res-stat-correct" style="color:var(--success);">28</div>
+              <div class="lbl">Correct Answers</div>
+            </div>
+            <div class="result-stat-card">
+              <div class="val" id="res-stat-incorrect" style="color:var(--danger);">2</div>
+              <div class="lbl">Incorrect</div>
+            </div>
+            <div class="result-stat-card">
+              <div class="val" id="res-stat-unanswered" style="color:var(--warning);">0</div>
+              <div class="lbl">Unanswered</div>
+            </div>
+            <div class="result-stat-card">
+              <div class="val" id="res-stat-marks">28 / 30</div>
+              <div class="lbl">Total Marks</div>
+            </div>
+            <div class="result-stat-card">
+              <div class="val" id="res-stat-time">24m 18s</div>
+              <div class="lbl">Time Elapsed</div>
+            </div>
+          </div>
+
+          <!-- Actions -->
+          <div class="result-actions">
+            <button class="btn btn-primary" onclick="scrollToReview()">
+              <span>Review Answers</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <polyline points="19 12 12 19 5 12"></polyline>
+              </svg>
+            </button>
+            <button class="btn btn-secondary" onclick="navigateTo('student')">
+              <span>View Dashboard</span>
+            </button>
+            <button class="btn btn-secondary" onclick="window.print()">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="6 9 6 2 18 2 18 9"></polyline>
+                <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+                <rect x="6" y="14" width="12" height="8"></rect>
+              </svg>
+              <span>Download / Print Result</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Detailed Question Review Section -->
+        <div class="review-section" id="review-container-section">
+          <div class="review-toolbar">
+            <div>
+              <h3 style="font-size:1.5rem; margin-bottom:0.2rem;">Detailed Item Analysis</h3>
+              <p style="font-size:0.9rem; color:var(--text-secondary);">Examine chosen answers vs. verified solutions and academic explanations.</p>
+            </div>
+            <div class="filter-pills" id="review-filter-pills">
+              <button class="filter-pill active" onclick="filterReviewList('all')">All (30)</button>
+              <button class="filter-pill" onclick="filterReviewList('correct')">Correct</button>
+              <button class="filter-pill" onclick="filterReviewList('incorrect')">Incorrect</button>
+            </div>
+          </div>
+
+          <div id="review-items-list">
+            <!-- Populated via app.js -->
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==========================================================================
+       VIEW 6: STUDENT SAAS COMMAND CENTER (DASHBOARD)
+       ========================================================================== -->
+  <main id="view-student" class="app-view" style="display:none;">
+    <section class="dashboard-section">
+      <div class="container">
+        <!-- Dashboard Header -->
+        <div class="dashboard-header">
+          <div>
+            <h1 class="dashboard-greeting">Good morning, Alex 👋</h1>
+            <p class="dashboard-sub">Ready to challenge yourself and expand your expertise today?</p>
+          </div>
+          <button class="btn btn-primary" onclick="navigateTo('discovery')">
+            <span>Browse All Exams</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </button>
+        </div>
+
+        <!-- 4 KPI Cards -->
+        <div class="kpi-grid">
+          <div class="kpi-card">
+            <div class="kpi-icon indigo">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="8" r="7"></circle>
+                <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline>
+              </svg>
+            </div>
+            <div>
+              <div class="kpi-val text-gradient">94%</div>
+              <div class="kpi-lbl">Average Assessment Score</div>
+            </div>
+          </div>
+
+          <div class="kpi-card">
+            <div class="kpi-icon cyan">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+              </svg>
+            </div>
+            <div>
+              <div class="kpi-val" style="color:var(--accent);">24</div>
+              <div class="kpi-lbl">Exams Completed</div>
+            </div>
+          </div>
+
+          <div class="kpi-card">
+            <div class="kpi-icon emerald">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+              </svg>
+            </div>
+            <div>
+              <div class="kpi-val" style="color:var(--success);">96%</div>
+              <div class="kpi-lbl">Passing Qualification Rate</div>
+            </div>
+          </div>
+
+          <div class="kpi-card">
+            <div class="kpi-icon amber">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                <polyline points="17 6 23 6 23 12"></polyline>
+              </svg>
+            </div>
+            <div>
+              <div class="kpi-val" style="color:var(--warning);">+18%</div>
+              <div class="kpi-lbl">Study Progress Lift</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2-Column Dashboard Grid -->
+        <div class="dashboard-grid">
+          <!-- Left Column -->
+          <div>
+            <!-- Continue Exam Card -->
+            <div class="glass-card" style="padding:1.8rem; margin-bottom:2rem; border-left:4px solid var(--primary);">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.8rem;">
+                <span class="badge badge-primary">Continue Active Assessment</span>
+                <span style="font-size:0.85rem; color:var(--text-muted);">In Progress</span>
+              </div>
+              <h3 style="font-size:1.25rem; margin-bottom:0.5rem;">Advanced Computer Science & System Design</h3>
+              <p style="font-size:0.9rem; color:var(--text-secondary); margin-bottom:1.2rem;">
+                You were on Question 18 of 30. Your answers and timer state are preserved locally.
+              </p>
+              <div style="display:flex; gap:1rem;">
+                <button class="btn btn-primary btn-sm" onclick="startFlagshipExam()">Resume Exam</button>
+                <button class="btn btn-secondary btn-sm" onclick="navigateTo('discovery')">Change Exam</button>
+              </div>
+            </div>
+
+            <!-- Recent Results Table -->
+            <div class="glass-card" style="padding:1.8rem;">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.2rem;">
+                <h3 style="font-size:1.2rem;">Recent Examination History</h3>
+                <button class="btn btn-secondary btn-sm" onclick="navigateTo('analytics')">View All Analytics</button>
+              </div>
+              <div class="data-table-wrap">
+                <table class="data-table" id="student-results-table">
+                  <thead>
+                    <tr>
+                      <th>Exam Name</th>
+                      <th>Score</th>
+                      <th>Marks</th>
+                      <th>Status</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- Populated via data.js -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column: Subject Mastery & Insights -->
+          <div>
+            <div class="glass-card" style="padding:1.8rem; margin-bottom:2rem;">
+              <h3 style="font-size:1.2rem; margin-bottom:1.2rem;">Domain Mastery Breakdown</h3>
+              <div id="subject-mastery-container">
+                <!-- Mastery bars rendered via app.js -->
+              </div>
+            </div>
+
+            <!-- AI Insight Cards -->
+            <div class="glass-card" style="padding:1.8rem;">
+              <h3 style="font-size:1.2rem; margin-bottom:1rem;">Smart Learning Insights</h3>
+              <div class="insight-card">
+                <svg class="insight-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                </svg>
+                <p class="insight-text">Your performance improved by <strong>18%</strong> over your previous baseline examination sessions.</p>
+              </div>
+              <div class="insight-card">
+                <svg class="insight-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <polyline points="12 6 12 12 14 14"></polyline>
+                </svg>
+                <p class="insight-text"><strong>Computer Science</strong> is your strongest subject with 96% cumulative question accuracy.</p>
+              </div>
+              <div class="insight-card">
+                <svg class="insight-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                </svg>
+                <p class="insight-text">You're performing well above your peer cohort, ranking in the <strong>Top 2%</strong> globally.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==========================================================================
+       VIEW 7: ADVANCED ANALYTICS DASHBOARD
+       ========================================================================== -->
+  <main id="view-analytics" class="app-view" style="display:none;">
+    <section class="dashboard-section">
+      <div class="container">
+        <div class="dashboard-header">
+          <div>
+            <div class="badge badge-cyan" style="margin-bottom:0.5rem;">Performance Intelligence</div>
+            <h1 style="font-size:2.5rem;">Advanced Performance Analytics</h1>
+            <p style="color:var(--text-secondary);">Telemetry data and longitudinal trajectory metrics computed across your examination sessions.</p>
+          </div>
+        </div>
+
+        <div style="display:grid; grid-template-columns:1.5fr 1fr; gap:2rem; margin-bottom:2.5rem;">
+          <!-- Score Trend Line Chart Card -->
+          <div class="chart-card">
+            <div class="chart-header">
+              <div>
+                <h3 style="font-size:1.2rem;">Score Trajectory Over Time</h3>
+                <p style="font-size:0.85rem; color:var(--text-muted);">Historical progression over recent 6 months</p>
+              </div>
+              <span class="badge badge-success">+12% Growth</span>
+            </div>
+            <div class="chart-canvas-wrap">
+              <canvas id="trendChartCanvas" width="600" height="240"></canvas>
+            </div>
+          </div>
+
+          <!-- Accuracy Distribution Donut Chart Card -->
+          <div class="chart-card">
+            <div class="chart-header">
+              <div>
+                <h3 style="font-size:1.2rem;">Accuracy Distribution</h3>
+                <p style="font-size:0.85rem; color:var(--text-muted);">Score percentile tiering</p>
+              </div>
+            </div>
+            <div class="chart-canvas-wrap">
+              <canvas id="donutChartCanvas" width="350" height="240"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <!-- Weekly Activity & Insights -->
+        <div class="chart-card">
+          <div class="chart-header">
+            <div>
+              <h3 style="font-size:1.2rem;">Weekly Exam Activity</h3>
+              <p style="font-size:0.85rem; color:var(--text-muted);">Total questions answered per weekday</p>
+            </div>
+            <span class="badge badge-primary">High Consistency</span>
+          </div>
+          <div class="chart-canvas-wrap" style="height:180px;">
+            <canvas id="activityChartCanvas" width="900" height="180"></canvas>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==========================================================================
+       VIEW 8: ELITE LEADERBOARD
+       ========================================================================== -->
+  <main id="view-leaderboard" class="app-view" style="display:none;">
+    <section class="leaderboard-section">
+      <div class="container">
+        <div class="section-header">
+          <div class="badge badge-primary section-badge">Global Cohort</div>
+          <h1 class="section-title">Elite Student Leaderboard</h1>
+          <p class="section-subtitle">Top scholars ranked by verified assessment accuracy, speed, and consistency.</p>
+        </div>
+
+        <!-- Timeframe Filters -->
+        <div style="display:flex; justify-content:center; margin-bottom:2rem;">
+          <div class="filter-pills" id="leaderboard-filter-pills">
+            <button class="filter-pill active" onclick="setLeaderboardFilter('weekly')">Weekly</button>
+            <button class="filter-pill" onclick="setLeaderboardFilter('monthly')">Monthly</button>
+            <button class="filter-pill" onclick="setLeaderboardFilter('allTime')">All-Time</button>
+          </div>
+        </div>
+
+        <!-- 3D Podium for Top 3 Performers -->
+        <div class="podium-wrap" id="podium-container">
+          <!-- Populated dynamically via app.js -->
+        </div>
+
+        <!-- Ranked Table for Ranks 4+ -->
+        <div class="glass-card" style="padding:1.8rem;">
+          <div class="data-table-wrap">
+            <table class="data-table" id="leaderboard-table">
+              <thead>
+                <tr>
+                  <th>Rank</th>
+                  <th>Student Scholar</th>
+                  <th>Institution</th>
+                  <th>Accuracy</th>
+                  <th>Points</th>
+                  <th>Streak</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Populated dynamically -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==========================================================================
+       VIEW 9: ADMIN COMMAND CENTER
+       ========================================================================== -->
+  <main id="view-admin" class="app-view" style="display:none;">
+    <section class="admin-section">
+      <div class="container">
+        <!-- Admin Banner -->
+        <div class="admin-banner">
+          <div class="admin-banner-text">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+            </svg>
+            <span>EXAMORA Executive Admin Console • Authenticated as Dr. Evelyn Vance</span>
+          </div>
+          <button class="btn btn-secondary btn-sm" onclick="switchRole('student')">Exit Admin Mode</button>
+        </div>
+
+        <!-- Admin KPI Cards -->
+        <div class="kpi-grid">
+          <div class="kpi-card">
+            <div class="kpi-icon indigo">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+              </svg>
+            </div>
+            <div>
+              <div class="kpi-val text-gradient">12,450</div>
+              <div class="kpi-lbl">Enrolled Students</div>
+            </div>
+          </div>
+
+          <div class="kpi-card">
+            <div class="kpi-icon cyan">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="3" width="20" height="14" rx="2"></rect>
+                <line x1="8" y1="21" x2="16" y2="21"></line>
+              </svg>
+            </div>
+            <div>
+              <div class="kpi-val" style="color:var(--accent);" id="admin-exams-count">6</div>
+              <div class="kpi-lbl">Active Examinations</div>
+            </div>
+          </div>
+
+          <div class="kpi-card">
+            <div class="kpi-icon emerald">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="8" x2="12" y2="12"></line>
+                <line x1="12" y1="16" x2="12.01" y2="16"></line>
+              </svg>
+            </div>
+            <div>
+              <div class="kpi-val" style="color:var(--success);" id="admin-questions-count">30</div>
+              <div class="kpi-lbl">Curated Questions</div>
+            </div>
+          </div>
+
+          <div class="kpi-card">
+            <div class="kpi-icon amber">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+              </svg>
+            </div>
+            <div>
+              <div class="kpi-val" style="color:var(--warning);">84.2%</div>
+              <div class="kpi-lbl">Platform Pass Rate</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Admin Tabs -->
+        <div class="admin-tabs">
+          <button class="admin-tab-btn active" id="tab-btn-exams" onclick="switchAdminTab('exams')">Exam Builder</button>
+          <button class="admin-tab-btn" id="tab-btn-questions" onclick="switchAdminTab('questions')">MCQ Question Bank</button>
+          <button class="admin-tab-btn" id="tab-btn-students" onclick="switchAdminTab('students')">Student Management</button>
+        </div>
+
+        <!-- Admin Tab 1: Exam Builder -->
+        <div id="admin-tab-exams" class="admin-tab-content">
+          <div style="display:grid; grid-template-columns:1fr 1.3fr; gap:2rem;">
+            <!-- Create Exam Form -->
+            <div class="glass-card" style="padding:2rem;">
+              <h3 style="font-size:1.3rem; margin-bottom:1.5rem;">Create New Examination</h3>
+              <form id="create-exam-form" onsubmit="handleCreateExam(event)">
+                <div class="form-grid">
+                  <div class="form-group form-full">
+                    <label class="form-label">Exam Title *</label>
+                    <input type="text" class="form-input" id="new-exam-title" required placeholder="e.g. Distributed Systems Engineering">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Category *</label>
+                    <select class="form-select" id="new-exam-category" required>
+                      <option value="Computer Science">Computer Science</option>
+                      <option value="Cloud Architecture">Cloud Architecture</option>
+                      <option value="AI & ML">AI & ML</option>
+                      <option value="Cyber Security">Cyber Security</option>
+                      <option value="Data Structures">Data Structures</option>
+                      <option value="DevOps">DevOps</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Difficulty *</label>
+                    <select class="form-select" id="new-exam-difficulty" required>
+                      <option value="Intermediate">Intermediate</option>
+                      <option value="Hard">Hard</option>
+                      <option value="Advanced">Advanced</option>
+                      <option value="Easy">Easy</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Duration (Minutes) *</label>
+                    <input type="number" class="form-input" id="new-exam-duration" min="5" max="180" value="45" required>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Passing Percentage (%) *</label>
+                    <input type="number" class="form-input" id="new-exam-pass" min="40" max="95" value="70" required>
+                  </div>
+                  <div class="form-group form-full">
+                    <label class="form-label">Description *</label>
+                    <textarea class="form-textarea" id="new-exam-desc" required placeholder="Describe objectives, scope and prerequisites..."></textarea>
+                  </div>
+                  <div class="form-group form-full">
+                    <button type="submit" class="btn btn-primary" style="width:100%;">Publish Examination</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+
+            <!-- Published Exams List -->
+            <div class="glass-card" style="padding:2rem;">
+              <h3 style="font-size:1.3rem; margin-bottom:1.5rem;">Active Assessment Catalog</h3>
+              <div class="data-table-wrap">
+                <table class="data-table" id="admin-exams-table">
+                  <thead>
+                    <tr>
+                      <th>Title</th>
+                      <th>Category</th>
+                      <th>Duration</th>
+                      <th>Questions</th>
+                      <th>Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- Populated dynamically -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Admin Tab 2: MCQ Question Bank -->
+        <div id="admin-tab-questions" class="admin-tab-content" style="display:none;">
+          <div class="glass-card" style="padding:2rem; margin-bottom:2rem;">
+            <h3 style="font-size:1.3rem; margin-bottom:1.5rem;">Add MCQ Question to Bank</h3>
+            <form id="create-question-form" onsubmit="handleCreateQuestion(event)">
+              <div class="form-grid">
+                <div class="form-group form-full">
+                  <label class="form-label">Question Text *</label>
+                  <textarea class="form-textarea" id="new-q-text" required placeholder="Enter the full question statement..."></textarea>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Option A *</label>
+                  <input type="text" class="form-input" id="new-q-opt-0" required placeholder="First option...">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Option B *</label>
+                  <input type="text" class="form-input" id="new-q-opt-1" required placeholder="Second option...">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Option C *</label>
+                  <input type="text" class="form-input" id="new-q-opt-2" required placeholder="Third option...">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Option D *</label>
+                  <input type="text" class="form-input" id="new-q-opt-3" required placeholder="Fourth option...">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Correct Answer *</label>
+                  <select class="form-select" id="new-q-correct" required>
+                    <option value="0">Option A</option>
+                    <option value="1">Option B</option>
+                    <option value="2">Option C</option>
+                    <option value="3">Option D</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Difficulty *</label>
+                  <select class="form-select" id="new-q-difficulty" required>
+                    <option value="Easy">Easy</option>
+                    <option value="Intermediate" selected>Intermediate</option>
+                    <option value="Hard">Hard</option>
+                  </select>
+                </div>
+                <div class="form-group form-full">
+                  <label class="form-label">Explanation & Academic Citation *</label>
+                  <textarea class="form-textarea" id="new-q-explanation" required placeholder="Detailed rationale for student post-exam review..."></textarea>
+                </div>
+                <div class="form-group form-full">
+                  <button type="submit" class="btn btn-primary">Save Question to Bank</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <!-- Admin Tab 3: Student Management -->
+        <div id="admin-tab-students" class="admin-tab-content" style="display:none;">
+          <div class="glass-card" style="padding:2rem;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem;">
+              <h3 style="font-size:1.3rem;">Registered Candidate Roster</h3>
+              <div class="search-box" style="max-width:320px;">
+                <input type="text" id="admin-student-search" placeholder="Search students..." oninput="filterAdminStudents()">
+              </div>
+            </div>
+            <div class="data-table-wrap">
+              <table class="data-table" id="admin-students-table">
+                <thead>
+                  <tr>
+                    <th>Student Scholar</th>
+                    <th>Email</th>
+                    <th>Registered</th>
+                    <th>Exams Taken</th>
+                    <th>Average</th>
+                    <th>Account Status</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- Populated dynamically via data.js -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Load Data Layer & Application Engine -->
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
